@@ -162,7 +162,7 @@ void hexprint(char *array, int array_len) {
 // Debug function
 void print_header(void) {
   fprintf(stderr, "Header:\n");
-  fprintf(stderr, "Size: %d\n", sizeof(header));
+  fprintf(stderr, "Size: %lu\n", sizeof(header));
   fprintf(stderr, ".magic: %u\n", header.magic);
   fprintf(stderr, ".version: %u\n", header.version);
   fprintf(stderr, ".key_table_offset: %u\n", header.key_table_offset);
@@ -174,7 +174,7 @@ void print_header(void) {
 // Debug function
 void print_entries(void) {
   fprintf(stderr, "Index table:\n");
-  fprintf(stderr, "Size: %d\n", sizeof(struct index_table_entry) * header.entries_count);
+  fprintf(stderr, "Size: %lu\n", sizeof(struct index_table_entry) * header.entries_count);
   for (int i = 0; i < header.entries_count; i++) {
     fprintf(stderr, "Entry %d:\n", i);
     fprintf(stderr, "  .key_offset: %u -> \"%s\"\n", entries[i].key_offset,
@@ -947,11 +947,11 @@ int main(int argc, char *argv[]) {
         case 3: cmd = "set"; break;
       }
       fprintf(stderr, "%s)\n", cmd);
-      fprintf(stderr, "  .param.type: %d\n", commands[i].param.type);
+      fprintf(stderr, "  .param.type: %s\n", commands[i].param.type);
       if (commands[i].param.key) {
         fprintf(stderr, "  .param.key: \"%s\"\n", commands[i].param.key);
       } else {
-        fprintf(stderr, "  .param.key: NULL\n", commands[i].param.key);
+        fprintf(stderr, "  .param.key: NULL\n");
       }
       if (commands[i].param.value) {
         fprintf(stderr, "  .param.value: \"%s\"\n", commands[i].param.value);
